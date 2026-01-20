@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Form Sign In</title>
+
+    <!-- CDN Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css">
+
+    <!--Custom CSS-->
+    <link rel="stylesheet" href="style.css">
+
+
+</head>
+<body>
+
+    <div class="login-container">
+        <!-- Sign In Form -->
+        <div id="signin-form" class="form-section">
+            <div class="login-icon">
+                <i class="fa-brands fa-github"></i>
+            </div>
+
+            <h2 class="login">Sign In To GitHub</h2>
+
+            <form method="post" action="#">
+                <label for="username">Username or Email address</label>
+                <input type="text" id="username" name="username" required placeholder="Enter you username">
+
+                <label for="password">Password</label>
+                <input type="password" id="password" name="password" required placeholder="Enter your password">
+
+                <button type="submit" class="btn-submit">Sign in</button>
+
+                <div class="divider">
+                    <hr class="divider-line">
+                    <span class="divider-text">or use</span>
+                </div>
+                
+                <button type="button" class="btn-social google">
+                    <i class="fa-brands fa-google"></i>
+                    Sign in with Google
+                </button>
+
+                <button type="button" class="btn-social apple">
+                    <i class="fa-brands fa-apple"></i>
+                    Sign in with Apple
+                </button>
+
+                <div class="signup-link">
+                    <span>New to Github?</span>
+                    <a href="#" id="create-account-btn">Create an account</a>
+                </div>
+
+            </form>
+        </div>
+
+        <!-- Sign Up Form -->
+        <div id="signup-form" class="form-section" style="display: none;">
+            <div class="login-icon">
+                <i class="fa-solid fa-user-plus"></i>
+            </div>
+
+            <h2 class="login">Create Account</h2>
+
+            <form method="post" action="#">
+                <label for="signup-email">Email address</label>
+                <input type="email" id="signup-email" name="email" required placeholder="Enter your email">
+
+                <label for="signup-username">Username</label>
+                <input type="text" id="signup-username" name="username" required placeholder="Choose a username">
+
+                <label for="signup-password">Password</label>
+                <input type="password" id="signup-password" name="password" required placeholder="Create a password">
+
+                <label for="confirm-password">Confirm Password</label>
+                <input type="password" id="confirm-password" name="confirm-password" required placeholder="Confirm your password">
+
+                <button type="submit" class="btn-submit">Create Account</button>
+
+                <div class="divider">
+                    <hr class="divider-line">
+                    <span class="divider-text">or</span>
+                </div>
+                
+                <button class="btn-social">
+                    <i class="fa-brands fa-google"></i>
+                    Sign up with Google
+                </button>
+
+                <button class="btn-social">
+                    <i class="fa-brands fa-apple"></i>
+                    Sign up with Apple
+                </button>
+
+                <div class="signup-link">
+                    <span>Already have an account?</span>
+                    <a href="#" id="back-to-signin">Sign in</a>
+                </div>
+
+            </form>
+        </div>
+
+    </div>
+
+    <script>
+        const createAccountBtn = document.getElementById('create-account-btn');
+        const backToSigninBtn = document.getElementById('back-to-signin');
+        const signinForm = document.getElementById('signin-form');
+        const signupForm = document.getElementById('signup-form');
+
+        createAccountBtn.addEventListener('click', (e) => {
+            e.preventDefault();
+            signinForm.style.display = 'none';
+            signupForm.style.display = 'block';
+        });
+
+        backToSigninBtn.addEventListener('click', (e) => {
+            e.preventDefault();
+            signupForm.style.display = 'none';
+            signinForm.style.display = 'block';
+        });
+
+        // Handle sign-up form submission
+        const signupFormElement = signupForm.querySelector('form');
+        signupFormElement.addEventListener('submit', (e) => {
+            e.preventDefault();
+            
+            const password = document.getElementById('signup-password').value;
+            const confirmPassword = document.getElementById('confirm-password').value;
+            
+            // Check if passwords match
+            if (password !== confirmPassword) {
+                alert('Passwords do not match!');
+                return;
+            }
+            
+            // If all validations pass, switch back to sign-in form
+            signupForm.style.display = 'none';
+            signinForm.style.display = 'block';
+            
+            // Clear the sign-up form fields
+            signupFormElement.reset();
+            
+            // Optional: Show a success message
+            alert('Account created successfully! Please sign in.');
+        });
+    </script>
+    
+</body>
+</html>
